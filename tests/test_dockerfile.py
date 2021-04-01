@@ -20,6 +20,6 @@ class TestDockerfile:
             'Проверьте, что добавили инструкцию RUN с установкой зависимостей из файла '
             'requirements.txt в файл Dockerfile'
         )
-        assert re.search(r'CMD\s+gunicorn\s+api_yamdb\.wsgi:application', dockerfile), (
+        assert re.search(r'CMD\s+gunicorn\s+api_yamdb\.wsgi:application.+$', dockerfile), (
             'Проверьте, что добавили инструкцию CMD с запуском gunicorn в файл Dockerfile'
         )
