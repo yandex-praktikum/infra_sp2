@@ -1,0 +1,24 @@
+# Надо исправить: Лишние комментарии из урока лучше удалить
+version: '3.3'
+
+volumes:
+  postgres_data:
+
+services:
+  db:
+    # Можно лучше: Версии надо фиксировать. Тут баг в тестах, поэтому пока пишем в качестве рекомендации.
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+  web:
+    build: .
+    restart: always
+    # Надо исправить: Тут в 90% случаев есть command. Он лишн, тк у нас уже есть CMD в Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - ./.env
